@@ -6,32 +6,22 @@ Tired of checking if closed, inactive, or full classes have opened up? This proj
 
 If you're worried about providing your login credentials to a mysterious program (you damn well should be), have a look at the source code first. It's all free and open software. 
 
-Statuses are:
-"Unknown"
-"Not active"
-"Waitlist is full"
-"Waitlist is open"
-"Open"
+Statuses are: Unknown, Not active, Waitlist is full, Waitlist is open, Open.
 
-Installation - Linux
-========
-1. This project has some dependencies:
-python3.3 firefox python3-lxml python3-pip xvfb uchardet
-
-sudo apt-get install python3.3 firefox python3-lxml python3-pip xvfb uchardet 
+##Installation
+###Linux
+1. Install dependencies: 
+	sudo apt-get install python3.3 firefox python3-lxml python3-pip xvfb uchardet 
 
 2. Use pip to install python libraries:
-sudo pip3 install pyvirtualdisplay selenium
+	sudo pip3 install pyvirtualdisplay selenium
 
 3. Navigate to "dist-packages" and install ztools:
-cd /usr/lib/python3/dist-packages/
-sudo git clone https://github.com/Zulban/ztools
+	cd /usr/lib/python3/dist-packages/
+	sudo git clone https://github.com/Zulban/ztools
 
-Installation - Windows and OSX
-========
-Currently no Windows or OSX support. Only tested on Linux. It would be really easy to port without xvfb (which allows the --headless option). It's just a matter of using python3-chardet instead of uchardet. 
+###Windows and OSX
+Currently no Windows or OSX support. Only tested on Linux. It would be really easy to port without xvfb (which allows the --headless option). It's just a matter of using python3-chardet instead of uchardet in ztools/webpage.py.
 
-Notes
-========
-Tested with selenium 2.34.0
-https://pypi.python.org/packages/source/s/selenium/selenium-2.34.0.tar.gz
+###Notes
+Tested with [selenium 2.34.0](https://pypi.python.org/packages/source/s/selenium/selenium-2.34.0.tar.gz)
