@@ -106,6 +106,8 @@ def main(args):
     if not watchlist:
         return
     
+    print(args)
+    
     ml=MinervaLoop(args["<mcgill-user>"],
                 args["<mcgill-pw>"],
                 watchlist,
