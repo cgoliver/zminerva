@@ -13,15 +13,15 @@ Tested with [selenium 2.34.0](https://pypi.python.org/packages/source/s/selenium
 
 ##Installation
 ###Linux
-1. Install dependencies: 
+Install dependencies: 
 
 	sudo apt-get install python3.3 firefox python3-lxml python3-pip xvfb uchardet 
 
-2. Use pip to install python libraries:
+Use pip to install python libraries:
 
 	sudo pip3 install pyvirtualdisplay selenium
 
-3. Navigate to "dist-packages" and install ztools:
+Navigate to "dist-packages" and install ztools:
 
 	cd /usr/lib/python3/dist-packages/
 	sudo git clone https://github.com/Zulban/ztools
