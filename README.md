@@ -29,5 +29,6 @@ If you're worried about providing your login credentials to a mysterious program
 ###Windows and OSX
 Currently no Windows or OSX support. Only tested on Linux. It would be really easy to port without xvfb (which allows the --headless option). It's just a matter of using python3-chardet instead of uchardet in ztools/webpage.py.
 
-###Notes
+##Notes
+Only does undergrad for now.
 Tested with [selenium 2.34.0](https://pypi.python.org/packages/source/s/selenium/selenium-2.34.0.tar.gz)
