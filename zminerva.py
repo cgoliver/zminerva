@@ -2,7 +2,7 @@
 Minerva Crawl
 
 Usage:
-  mcrawl.py <mcgill-user> <mcgill-pw> [<gmail-recipient> <gmail-user> <gmail-pw>] [options]
+  mcrawl.py <mcgill-user> <mcgill-pw> [<recipient> <gmail-user> <gmail-pw>] [options]
 
 Options:
   --interval=<i>      Wait this number of seconds after finishing a search before starting another. [default: 300]
@@ -102,6 +102,10 @@ def main(args):
         logger.warning("Invalid interval: %s"%args["--interval"])
         interval=20
     
+    if "@gmail.com" not in args["<gmail-user>"]:
+        logger.error("Invalid email: %s. The sender of the emails must be a gmail account."%args["<gmail-user>"])
+        return
+    
     watchlist=get_watchlist()
     if not watchlist:
         return
@@ -115,7 +119,7 @@ def main(args):
                 headless=args["--headless"],
                 gmail_user=args["<gmail-user>"],
                 gmail_pw=args["<gmail-pw>"],
-                gmail_recipient=args["<gmail-recipient>"])
+                gmail_recipient=args["<recipient>"])
 
 if __name__ == "__main__":
     args = docopt(__doc__, version="0.1")

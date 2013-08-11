@@ -7,6 +7,19 @@ Tired of checking if closed, inactive, or full classes have opened up? This proj
 ###Security
 If you're worried about providing your login credentials to a mysterious program (you damn well should be), have a look at the source code first. It's all free and open software. 
 
+###Usage
+At a minimum, you must provide your @mail.mcgill.ca username and password.
+
+	python3 zminerva.py bob.joe@mail.mcgill.ca mcgillpassword
+
+In order to receive emails when course statuses change, you must also provide a recipient email, and a gmail username and password.
+
+	python3 zminerva.py bob.joe@mail.mcgill.ca mcgillpassword bob.joe@hotmail.com robot@gmail.com robotpassword
+	
+In the case above, we login to Minerva using bob.joe@mail.mcgill.ca. When statuses change, emails are sent to bob.joe@hotmail.com. The emails are sent from robot@gmail.com. For more information, run this:
+
+	python3. zminerva.py -h  
+
 ###Statuses
 1. Unknown
 2. Not active
@@ -17,12 +30,15 @@ If you're worried about providing your login credentials to a mysterious program
 ##Installation
 ###Linux
 1. Install dependencies: 
+
 	sudo apt-get install python3.3 firefox python3-lxml python3-pip xvfb uchardet 
 
 2. Use pip to install python libraries:
+
 	sudo pip3 install pyvirtualdisplay selenium
 
 3. Navigate to "dist-packages" and install ztools:
+
 	cd /usr/lib/python3/dist-packages/
 	sudo git clone https://github.com/Zulban/ztools
 
