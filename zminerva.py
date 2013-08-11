@@ -7,7 +7,7 @@ Usage:
 Options:
   --interval=<i>      Wait this number of seconds after finishing a search before starting another. [default: 300]
   --verbose           Print lots of info to console.
-  --headless          Run firefox invisibly. May be necessary on servers.
+  --headless          Necessary on commandline servers. Runs firefox headless, meaning invisibly.
   
   -h --help           Show this screen.
   -v --version        Show version.

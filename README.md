@@ -13,20 +13,25 @@ Statuses are:
 "Waitlist is open"
 "Open"
 
-Installation
+Installation - Linux
 ========
-Only works on Linux (because of uchardet and --headless).
-
 1. This project has some dependencies:
 python3.3 firefox python3-lxml python3-pip xvfb uchardet
 
 sudo apt-get install python3.3 firefox python3-lxml python3-pip xvfb uchardet 
 
+2. Use pip to install python libraries:
+sudo pip3 install pyvirtualdisplay selenium
+
+3. Navigate to "dist-packages" and install ztools:
 cd /usr/lib/python3/dist-packages/
 sudo git clone https://github.com/Zulban/ztools
 
-sudo pip3 install pyvirtualdisplay selenium
+Installation - Windows and OSX
+========
+Currently no Windows or OSX support. Only tested on Linux. It would be really easy to port without xvfb (which allows the --headless option). It's just a matter of using python3-chardet instead of uchardet. 
 
-
-selenium 2.34.0
+Notes
+========
+Tested with selenium 2.34.0
 https://pypi.python.org/packages/source/s/selenium/selenium-2.34.0.tar.gz
