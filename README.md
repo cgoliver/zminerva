@@ -7,6 +7,11 @@ Tired of checking if closed, inactive, or full classes have opened up? This proj
 ###Security
 If you're worried about providing your login credentials to a mysterious program (you damn well should be), have a look at the source code first. It's all free and open software.
 
+###Disclaimer
+By default, the check interval is set to 5 minutes. That's recommended. I suggest you do not spam McGill by setting this any lower.
+
+This program does not actually register you for classes. That's on you. Automatic class registering and dropping would be really easy to set up, but I figured it's probably best not to mess with that.
+
 ##Notes
 Only does undergrad for now.
 Tested with [selenium 2.34.0](https://pypi.python.org/packages/source/s/selenium/selenium-2.34.0.tar.gz)
