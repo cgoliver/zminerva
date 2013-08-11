@@ -5,27 +5,11 @@ Written by zulban. Email zulban@gmail.com for comments. Code quality suggestions
 Tired of checking if closed, inactive, or full classes have opened up? This project monitors McGill university's Minerva website and emails you when classes you want have opened up. You just need to provide your Minerva login, an email account, and which courses you want.
 
 ###Security
-If you're worried about providing your login credentials to a mysterious program (you damn well should be), have a look at the source code first. It's all free and open software. 
+If you're worried about providing your login credentials to a mysterious program (you damn well should be), have a look at the source code first. It's all free and open software.
 
-###Usage
-At a minimum, you must provide your @mail.mcgill.ca username and password.
-
-	python3 zminerva.py bob.joe@mail.mcgill.ca mcgillpassword
-
-In order to receive emails when course statuses change, you must also provide a recipient email, and a gmail username and password.
-
-	python3 zminerva.py bob.joe@mail.mcgill.ca mcgillpassword bob.joe@hotmail.com robot@gmail.com robotpassword
-	
-In the case above, we login to Minerva using bob.joe@mail.mcgill.ca. When statuses change, emails are sent to bob.joe@hotmail.com. The emails are sent from robot@gmail.com. For more information, run this:
-
-	python3. zminerva.py -h  
-
-###Statuses
-1. Unknown
-2. Not active
-3. Waitlist is full
-4. Waitlist is open
-5. Open
+##Notes
+Only does undergrad for now.
+Tested with [selenium 2.34.0](https://pypi.python.org/packages/source/s/selenium/selenium-2.34.0.tar.gz)
 
 ##Installation
 ###Linux
@@ -45,6 +29,22 @@ In the case above, we login to Minerva using bob.joe@mail.mcgill.ca. When status
 ###Windows and OSX
 Currently no Windows or OSX support. Only tested on Linux. It would be really easy to port without xvfb (which allows the --headless option). It's just a matter of using python3-chardet instead of uchardet in ztools/webpage.py.
 
-##Notes
-Only does undergrad for now.
-Tested with [selenium 2.34.0](https://pypi.python.org/packages/source/s/selenium/selenium-2.34.0.tar.gz)
+###Usage
+At a minimum, you must provide your @mail.mcgill.ca username and password:
+
+	python3 zminerva.py bob.joe@mail.mcgill.ca mcgillpassword
+
+In order to receive emails when course statuses change, you must also provide a recipient email, and a gmail username and password:
+
+	python3 zminerva.py bob.joe@mail.mcgill.ca mcgillpassword bob.joe@hotmail.com robot@gmail.com robotpassword
+	
+In the case above, we login to Minerva using bob.joe@mail.mcgill.ca. When statuses change, emails are sent to bob.joe@hotmail.com. The emails are sent from robot@gmail.com. For more information, run this:
+
+	python3 zminerva.py -h  
+
+###Statuses
+1. Unknown
+2. Not active
+3. Waitlist is full
+4. Waitlist is open
+5. Open
