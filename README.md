@@ -35,7 +35,7 @@ Navigate to "dist-packages" and install ztools:
 Currently no Windows or OSX support. Only tested on Linux. It would be really easy to port without xvfb (which allows the --headless option). It's just a matter of using python3-chardet instead of uchardet in ztools/webpage.py.
 
 ##Usage
-###Monitor List
+###Watch List
 The list of courses you want to monitor must be saved in the file "watchlist". You must provide a department, code, and semester. CRNs are optional. Example:
 
 	fall 2013, comp 250, crn 827
@@ -53,8 +53,10 @@ In order to receive emails when course statuses change, you must also provide a 
 
 	python3 zminerva.py bob.joe@mail.mcgill.ca mcgillpassword bob.joe@hotmail.com robot@gmail.com robotpassword
 
+Here zminerva logs in to Minerva using bob.joe@mail.mcgill.ca. When statuses change, emails are sent to bob.joe@hotmail.com. The emails are sent from robot@gmail.com.
+
 ###Help
-In the case above, we login to Minerva using bob.joe@mail.mcgill.ca. When statuses change, emails are sent to bob.joe@hotmail.com. The emails are sent from robot@gmail.com. For more information, run this:
+For help:
 
 	python3 zminerva.py -h  
 
