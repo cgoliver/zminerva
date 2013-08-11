@@ -4,9 +4,15 @@ Written by zulban. Email zulban@gmail.com for comments. Code quality suggestions
 
 Tired of checking if closed, inactive, or full classes have opened up? This project monitors McGill university's Minerva website and emails you when classes you want have opened up. You just need to provide your Minerva login, an email account, and which courses you want.
 
+###Security
 If you're worried about providing your login credentials to a mysterious program (you damn well should be), have a look at the source code first. It's all free and open software. 
 
-Statuses are: Unknown, Not active, Waitlist is full, Waitlist is open, Open.
+###Statuses
+1. Unknown
+2. Not active
+3. Waitlist is full
+4. Waitlist is open
+5. Open
 
 ##Installation
 ###Linux
