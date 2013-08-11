@@ -1,0 +1,21 @@
+#List the courses you want to monitor at the end of this file. 
+#You must provide a department, code, and semester. Specific CRN 
+#is optional.
+#
+#Here is an example of how to monitor the status of two classes.
+#Just remove the hashes (#):
+#
+#fall 2013, comp 250, crn 827
+#fall 2013, edpe 335
+#
+#or more generally:
+#<semester>, <department and code>, <optional crn>
+
+fall 2013,comp 250,crn 827
+
+winter 2014,edpe 335
+winter 2014,edpe 510
+winter 2014,edec 260
+winter 2014,edpe 304
+winter 2014,math 324
+winter 2014,edem 220
