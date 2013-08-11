@@ -110,7 +110,7 @@ def main(args):
     if not watchlist:
         return
     
-    print(args)
+    logger.info("Started zminerva using args:\n"+str(args)+"\n")
     
     ml=MinervaLoop(args["<mcgill-user>"],
                 args["<mcgill-pw>"],
