@@ -1,4 +1,4 @@
-import time, pickle, os.path, logging
+import time, pickle, os.path, logging, sys, traceback
 
 from minerva_bot import MinervaBot
 from ztools.email_notifier import EmailNotifier
@@ -48,10 +48,24 @@ class MinervaLoop():
         
     def loop(self,interval):
         self.logger.info("Starting Minerva monitoring.")
+        failcount=0
         while 1==1:
-           self.run()
-           self.logger.info("Waiting %s seconds."%interval)
-           time.sleep(interval)
+            try:
+                self.run()
+                failcount=0
+            except:
+                failcount+=1
+                if failcount>30:
+                    failcount=30
+                e_type, e_value, e_traceback = sys.exc_info()
+                msg="Could not access website, or the browser failed.\n"
+                tbs=traceback.format_exception(e_type, e_value,e_traceback)
+                msg+="".join([line[:-1] for line in tbs])
+                self.logger.error(msg)
+                
+            real_interval=int(interval*(1+failcount/2))
+            self.logger.info("Waiting %s seconds."%real_interval)
+            time.sleep(interval)
     
     def run(self):
         mb=MinervaBot(self.mcgill_user,self.mcgill_pw,
