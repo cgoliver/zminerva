@@ -5,49 +5,21 @@ Usage:
   mcrawl.py <mcgill-user> <mcgill-pw> [<recipient> <gmail-user> <gmail-pw>] [options]
 
 Options:
-  --interval=<i>      Wait this number of seconds after finishing a search before starting another. [default: 300]
-  --verbose           Print lots of info to console.
+  --interval=<i>      Wait this number of seconds after finishing a search before starting another. [default: 1800]
+  --verbose           Extra output will print to console and save to the logs.
   --headless          Necessary on commandline servers. Runs firefox headless, meaning invisibly.
   
   -h --help           Show this screen.
   -v --version        Show version.
 """
 
-import os.path, re, logging, datetime
+import os.path, re
 from ztools.docopt import docopt
 from minerva_loop import MinervaLoop
-
-def get_log_name():
-    dt=datetime.datetime.now()
-    return "%s-%s-%s-mcrawl.log"%(dt.year,dt.month,dt.day)
-
-def set_logger(verbose):
-    logger = logging.getLogger("mcrawl")
-    if verbose:
-        logger.setLevel(logging.DEBUG)
-    else:
-        logger.setLevel(logging.INFO)
-    
-    fh = logging.FileHandler("logs/"+get_log_name())
-    #fh.setLevel(logging.DEBUG)
-    
-    ch = logging.StreamHandler()
-    #ch.setLevel(logging.INFO)
-    
-    formatter = logging.Formatter('%(asctime)s %(levelname)s %(message)s')
-    fh.setFormatter(formatter)
-    ch.setFormatter(formatter)
-    
-    logger.addHandler(fh)
-    logger.addHandler(ch)
-    
-    return logger
 
 def get_watchlist():
     path="watchlist"
     if not os.path.isfile(path):
-        logger = logging.getLogger("mcrawl")
-        logger.critical("Failed to find file: %s"%path)
         return list()
     
     with open(path,"r") as f:
@@ -95,22 +67,20 @@ def parse_watchline(line):
     return item
 
 def main(args):
-    logger=set_logger(args["--verbose"])
     try:
         interval=int(args["--interval"])
     except:
-        logger.warning("Invalid interval: %s"%args["--interval"])
-        interval=20
+        print("Abort: Invalid interval: %s"%args["--interval"])
+        return
     
     if "@gmail.com" not in args["<gmail-user>"]:
-        logger.error("Invalid email: %s. The sender of the emails must be a gmail account."%args["<gmail-user>"])
+        print("Abort: Invalid email: %s. The sender of the emails must be a gmail account."%args["<gmail-user>"])
         return
     
     watchlist=get_watchlist()
     if not watchlist:
+        print("Abort: Failed to find watchlist.")
         return
-    
-    logger.info("Started zminerva using args:\n"+str(args)+"\n")
     
     ml=MinervaLoop(args["<mcgill-user>"],
                 args["<mcgill-pw>"],
@@ -119,7 +89,9 @@ def main(args):
                 headless=args["--headless"],
                 gmail_user=args["<gmail-user>"],
                 gmail_pw=args["<gmail-pw>"],
-                gmail_recipient=args["<recipient>"])
+                gmail_recipient=args["<recipient>"],
+                verbose=args["--verbose"],
+                args=args)
 
 if __name__ == "__main__":
     args = docopt(__doc__, version="0.1")

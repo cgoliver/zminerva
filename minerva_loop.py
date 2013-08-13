@@ -1,4 +1,7 @@
-import time, pickle, os.path, logging, sys, traceback
+import time, os.path, logging, sys, datetime
+
+from http.client import BadStatusLine
+from selenium.common.exceptions import WebDriverException
 
 from minerva_bot import MinervaBot
 from ztools.email_notifier import EmailNotifier
@@ -10,7 +13,9 @@ class MinervaLoop():
                  watchlist,
                  interval=300,
                  headless=0,
-                 gmail_user="",gmail_pw="",gmail_recipient=""):
+                 verbose=0,
+                 gmail_user="",gmail_pw="",gmail_recipient="",
+                 args={}):
         self.mcgill_user=mcgill_user
         self.mcgill_pw=mcgill_pw
         self.headless=headless
@@ -18,6 +23,9 @@ class MinervaLoop():
         self.gmail_pw=gmail_pw
         self.gmail_recipient=gmail_recipient
         self.watchlist=watchlist
+        self.verbose=verbose
+        self.args=args
+        
         self.logger=logging.getLogger("mcrawl")
         
         self.course_history=[]
@@ -47,25 +55,37 @@ class MinervaLoop():
             self.semester_dic[semester]=set(departments)
         
     def loop(self,interval):
-        self.logger.info("Starting Minerva monitoring.")
+        first=1
         failcount=0
         while 1==1:
-            try:
-                self.run()
+            self.set_logger()
+            if first:
+                self.logger.info("Starting Minerva monitoring with args:\n"+str(self.args))
+                first=0
+                
+            success=self.try_run()
+            if success:
                 failcount=0
-            except:
+            else:
                 failcount+=1
                 if failcount>30:
                     failcount=30
-                e_type, e_value, e_traceback = sys.exc_info()
-                msg="Could not access website, or the browser failed.\n"
-                tbs=traceback.format_exception(e_type, e_value,e_traceback)
-                msg+="".join([line[:-1] for line in tbs])
-                self.logger.error(msg)
                 
             real_interval=int(interval*(1+failcount/2))
             self.logger.info("Waiting %s seconds."%real_interval)
             time.sleep(interval)
+    
+    def try_run(self):
+        try:
+            self.run()
+            return 1
+        except (BadStatusLine, IOError) as e:
+            self.logger.error("Connection failed.",exc_info=1)
+        except WebDriverException:
+            self.logger.error("Webdriver failed.",exc_info=1)
+        except:
+            self.logger.error("Unknown failure.",exc_info=1)
+        return 0
     
     def run(self):
         mb=MinervaBot(self.mcgill_user,self.mcgill_pw,
@@ -100,6 +120,28 @@ class MinervaLoop():
               "status":status,"semester":watchitem["semester"]}
         self.logger.debug("found info: %s %s %s"%(crn,depcode,status))
         self.course_history+=[item]
+
+    def set_logger(self):
+        def get_log_name():
+            dt=datetime.datetime.now()
+            return "%s-%s-%s-mcrawl.log"%(dt.year,dt.month,dt.day)
+        
+        self.logger = logging.getLogger("mcrawl")
+        if self.verbose:
+            self.logger.setLevel(logging.DEBUG)
+        else:
+            self.logger.setLevel(logging.INFO)
+    
+        fh = logging.FileHandler("logs/"+get_log_name())    
+        ch = logging.StreamHandler()
+        
+        formatter = logging.Formatter('%(asctime)s %(levelname)s %(message)s')
+        fh.setFormatter(formatter)
+        ch.setFormatter(formatter)
+        
+        self.logger.handlers=[]
+        self.logger.addHandler(fh)
+        self.logger.addHandler(ch)
     
     def log_status_summary(self):
         statuses={}
