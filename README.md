@@ -8,7 +8,7 @@ Tired of checking if closed, inactive, or full classes have opened up? This proj
 If you're worried about providing your login credentials to a mysterious program (you damn well should be), have a look at the source code first. It's all free and open software.
 
 ###Disclaimer
-By default, the check interval is set to 5 minutes. That's recommended. I suggest you do not spam McGill by setting this any lower.
+By default, the check interval is set to 30 minutes. That's recommended. I request that you do not spam McGill by setting this any lower. Plus, you will be blocked if you query too often. Follow [Responsible Use of McGill Information Technology Resources](http://www.mcgill.ca/secretariat/sites/mcgill.ca.secretariat/files/Responsible-Use-of-McGill-IT-Policy-on-the.pdf).
 
 This program does not actually register you for classes. That's on you. Automatic class registering and dropping would be really easy to set up, but I figured it's probably best not to mess with that.
 
