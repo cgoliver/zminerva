@@ -81,8 +81,8 @@ class MinervaLoop():
             return 1
         except (BadStatusLine, IOError) as e:
             self.logger.error("Connection failed.",exc_info=1)
-        except WebDriverException:
-            self.logger.error("Webdriver failed.",exc_info=1)
+        except WebDriverException as e:
+            self.logger.critical("Webdriver failed: "+str(e))
         except:
             self.logger.error("Unknown failure.",exc_info=1)
         return 0
