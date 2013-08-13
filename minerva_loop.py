@@ -15,6 +15,7 @@ class MinervaLoop():
                  headless=0,
                  verbose=0,
                  gmail_user="",gmail_pw="",gmail_recipient="",
+                 graduate=0,
                  args={}):
         self.mcgill_user=mcgill_user
         self.mcgill_pw=mcgill_pw
@@ -23,6 +24,7 @@ class MinervaLoop():
         self.gmail_pw=gmail_pw
         self.gmail_recipient=gmail_recipient
         self.watchlist=watchlist
+        self.graduate=graduate
         self.verbose=verbose
         self.args=args
         
@@ -97,7 +99,7 @@ class MinervaLoop():
     
     def run(self):
         mb=MinervaBot(self.mcgill_user,self.mcgill_pw,
-                      headless=self.headless)
+                      headless=self.headless,graduate=self.graduate)
         
         try:
             for semester in self.semester_dic:

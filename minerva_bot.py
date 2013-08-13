@@ -9,9 +9,10 @@ from ztools.webpage import WebPage
 from course_manager import CourseManager       
 
 class MinervaBot():
-    def __init__(self,username,password,headless=0):
+    def __init__(self,username,password,headless=0,graduate=0):
         self.username=username
         self.password=password
+        self.graduate=graduate
         self.semester=""
         self.course_managers={}
         self.logger=logging.getLogger("mcrawl")
@@ -79,7 +80,7 @@ class MinervaBot():
         cm=CourseManager(webpage)
         return cm
     
-    def submit_course_search(self,departments,only_undergrad=1):
+    def submit_course_search(self,departments):
         dep_text=", ".join(departments).upper()
         self.logger.info("Filling out search for %s classes in departments: %s"%(self.semester,dep_text))
         
@@ -98,7 +99,7 @@ class MinervaBot():
             if matchcount>=len(departments):
                 break
         
-        if only_undergrad:
+        if not self.graduate:
             level_list = self.driver.find_element_by_id("levl_id")
             for list_item in level_list.find_elements_by_tag_name("option"):
                 if "Undergraduate" in list_item.text:
