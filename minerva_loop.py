@@ -1,4 +1,4 @@
-import time, os.path, logging, sys, datetime
+import time, os.path, logging, sys, datetime, copy
 
 from http.client import BadStatusLine
 from selenium.common.exceptions import WebDriverException
@@ -60,7 +60,7 @@ class MinervaLoop():
         while 1==1:
             self.set_logger()
             if first:
-                self.logger.info("Starting Minerva monitoring with args:\n"+str(self.args))
+                self.log_first_loop()
                 first=0
                 
             success=self.try_run()
@@ -75,6 +75,14 @@ class MinervaLoop():
             self.logger.info("Waiting %s seconds."%real_interval)
             time.sleep(interval)
     
+    def log_first_loop(self):
+        args_without_pws=copy.copy(self.args)
+        for key in args_without_pws:
+            if "pw" in key:
+                args_without_pws[key]="*"*10
+                
+        self.logger.info("Starting Minerva monitoring with args:\n"+str(args_without_pws))
+                
     def try_run(self):
         try:
             self.run()
