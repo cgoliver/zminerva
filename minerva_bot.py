@@ -16,9 +16,10 @@ class MinervaBot():
         self.course_managers={}
         self.logger=logging.getLogger("mcrawl")
         
+        self.display=0
         if headless:
-            display = Display(visible=0, size=(800, 600))
-            display.start()
+            self.display = Display(visible=0, size=(800, 600))
+            self.display.start()
         
         self.logger.info("Launching Firefox.")
         self.driver = webdriver.Firefox()
@@ -112,6 +113,8 @@ class MinervaBot():
     def close(self):
         self.logger.info("Closing Firefox.")
         self.driver.close()
+        if self.display:
+            self.display.stop()
         
 
 
