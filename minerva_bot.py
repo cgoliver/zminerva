@@ -1,4 +1,4 @@
-import logging
+import logging, os, shutil
 from string import ascii_lowercase
 
 from pyvirtualdisplay import Display
@@ -116,6 +116,25 @@ class MinervaBot():
         self.driver.close()
         if self.display:
             self.display.stop()
+        
+        self.clear_temp_files()
+    
+    def clear_temp_files(self):
+        """
+        selenium seems to have a bug where if the the python process
+        never ends, new selenium webdrivers being started will 
+        eventually flood the /tmp/ folder with browser profiles.
+        This deletes them.
+        """
+        
+        temp_path="/tmp/"
+        count=0
+        for name in os.listdir(temp_path):
+            if os.isdir(name) and not name.find("tmp"):
+                shutil.rmtree(temp_path+name)
+                count+=1
+            
+        self.logger.debug("Deleted %s temp files."%count)
         
 
 
