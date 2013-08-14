@@ -13,7 +13,6 @@ By default, the check interval is set to 30 minutes. That's recommended. I reque
 This program does not actually register you for classes. That's on you. Automatic class registering and dropping would be really easy to set up, but I figured it's probably best not to mess with that.
 
 ##Notes
-Only does undergrad for now.
 Tested with [selenium 2.34.0](https://pypi.python.org/packages/source/s/selenium/selenium-2.34.0.tar.gz)
 
 ##Installation
