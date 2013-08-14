@@ -8,6 +8,9 @@ class LoopMessenger():
         if not self.can_send_email() or not self.report_days:
             return
         
+        if not self.last_course_history:
+            return
+        
         time_since_last_report=time.time()-self.last_report_time
         if time_since_last_report<self.report_days*24*60*60:
             return
