@@ -4,11 +4,11 @@ from http.client import BadStatusLine
 from selenium.common.exceptions import WebDriverException
 
 from minerva_bot import MinervaBot
-from ztools.email_notifier import EmailNotifier
+from loop_messenger import LoopMessenger
 from ztools.zio import zread_json, zwrite_json
 from zconstants import *
 
-class MinervaLoop():
+class MinervaLoop(LoopMessenger):
     def __init__(self,mcgill_user,mcgill_pw,
                  watchlist,
                  interval=300,
@@ -16,6 +16,7 @@ class MinervaLoop():
                  verbose=0,
                  gmail_user="",gmail_pw="",gmail_recipient="",
                  graduate=0,
+                 report_days=0,
                  args={}):
         self.mcgill_user=mcgill_user
         self.mcgill_pw=mcgill_pw
@@ -23,14 +24,18 @@ class MinervaLoop():
         self.gmail_user=gmail_user
         self.gmail_pw=gmail_pw
         self.gmail_recipient=gmail_recipient
+        self.interval=interval
         self.watchlist=watchlist
         self.graduate=graduate
+        self.report_days=report_days
         self.verbose=verbose
         self.args=args
         
         self.logger=logging.getLogger("mcrawl")
         
+        self.last_report_time=0
         self.course_history=[]
+        self.last_course_history=[]
         
         self.set_semester_dic()
         self.loop(interval)
@@ -65,14 +70,14 @@ class MinervaLoop():
                 self.log_first_loop()
                 first=0
                 
-            success=self.try_run()
-            if success:
+            if self.try_run():
                 failcount=0
             else:
                 failcount+=1
                 if failcount>30:
                     failcount=30
-                
+            
+            self.report()
             real_interval=int(interval*(1+failcount/2))
             self.logger.info("Waiting %s seconds."%real_interval)
             time.sleep(interval)
@@ -179,6 +184,7 @@ class MinervaLoop():
                 self.logger.warning("Failed to find %s."%path)
         
         zwrite_json(self.course_history,path,verbose=0)
+        self.last_course_history=self.course_history
         self.course_history=[]
     
     def compare_history(self,old_history):
@@ -196,33 +202,7 @@ class MinervaLoop():
         if changed_items:
             self.logger.info("Course statuses have changed.")
             self.logger.debug(str(changed_items))
-            if self.can_send_email():
-                self.send_email(changed_items)
-    
-    def can_send_email(self):
-        return self.gmail_user and self.gmail_pw and self.gmail_recipient
-    
-    def send_email(self,changed_items):
-        messages=[]
-        for item in changed_items:
-            s_msg=STATUSES[item["status"]]
-            msg="%s for %s with CRN %s is now \"%s\"."%(item["depcode"].upper(),item["semester"],item["crn"],s_msg)
-            messages+=[msg]
-        
-        depcodes=[i["depcode"].upper() for i in changed_items]
-        subject="Minerva update for %s"%(", ".join(depcodes))
-        body="Hello.\n\nSome McGill courses you are monitoring have changed their status:\n%s\n\nTo log in:\nhttps://horizon.mcgill.ca/pban1/twbkwbis.P_WWWLogin"
-        body=body%"\n".join(messages)
-        
-        self.logger.info("Sending email to: %s"%self.gmail_recipient)
-        en=EmailNotifier(self.gmail_user,self.gmail_pw,
-                         logger=self.logger)
-        en.send_mail(self.gmail_recipient,subject,body)
-        
-def get_course_string(depcode, semester,crn):
-    return 
-                
-            
+            self.send_update_email(changed_items)           
 
 
 

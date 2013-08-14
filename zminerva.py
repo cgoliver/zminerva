@@ -5,10 +5,11 @@ Usage:
   zminerva.py <mcgill-user> <mcgill-pw> [<recipient> <gmail-user> <gmail-pw>] [options]
 
 Options:
-  --interval=<i>      Wait this number of seconds after finishing a search before starting another. [default: 1800]
-  --verbose           Extra output will print to console and save to the logs.
-  --headless          Necessary on commandline servers. Runs firefox headless, meaning invisibly.
-  --graduate          By default, zminerva only searches undergrad courses. Use this option to also search all levels.
+  --interval=<seconds>   Wait this number of seconds after finishing a search before starting another. [default: 1800]
+  --verbose              Extra output will print to console and save to the logs.
+  --headless             Necessary on commandline servers. Runs firefox headless, meaning invisibly.
+  --graduate             By default, zminerva only searches undergrad courses. Use this option to also search all levels.
+  --report=<days>        zminerva will send an email update even if there are no course status changes. Set the number of days between each report. [default: 0]
   
   -h --help           Show this screen.
   -v --version        Show version.
@@ -83,6 +84,12 @@ def main(args):
         print("Abort: Failed to find watchlist.")
         return
     
+    try:
+        report_days=int(args["--report"])
+    except:
+        print("Abort: Invalid value for report days: %s"%args["--report"])
+        return
+    
     ml=MinervaLoop(args["<mcgill-user>"],
                 args["<mcgill-pw>"],
                 watchlist,
@@ -93,6 +100,7 @@ def main(args):
                 gmail_recipient=args["<recipient>"],
                 verbose=args["--verbose"],
                 graduate=args["--graduate"],
+                report_days=report_days,
                 args=args)
 
 if __name__ == "__main__":
