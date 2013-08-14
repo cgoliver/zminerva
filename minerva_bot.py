@@ -1,5 +1,7 @@
-import logging, os, shutil
+import logging, shutil
 from string import ascii_lowercase
+from os import listdir
+from os.path import isdir
 
 from pyvirtualdisplay import Display
 from selenium import webdriver
@@ -129,8 +131,8 @@ class MinervaBot():
         
         temp_path="/tmp/"
         count=0
-        for name in os.listdir(temp_path):
-            if os.isdir(name) and not name.find("tmp"):
+        for name in listdir(temp_path):
+            if isdir(name) and not name.find("tmp"):
                 shutil.rmtree(temp_path+name)
                 count+=1
             
