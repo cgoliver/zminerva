@@ -132,8 +132,9 @@ class MinervaBot():
         temp_path="/tmp/"
         count=0
         for name in listdir(temp_path):
-            if isdir(name) and not name.find("tmp"):
-                shutil.rmtree(temp_path+name)
+            path=temp_path+name
+            if isdir(path) and not name.find("tmp"):
+                shutil.rmtree(path)
                 count+=1
             
         self.logger.info("Deleted %s temp files."%count)
