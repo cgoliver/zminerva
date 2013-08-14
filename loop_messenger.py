@@ -27,6 +27,7 @@ class LoopMessenger():
         body+="\n".join(messages)
         body+="\n\nzminerva will continue to check class statuses every %s seconds."%self.interval
         
+        
         self.send_email(subject,body)
 
     def can_send_email(self):
