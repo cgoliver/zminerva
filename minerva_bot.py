@@ -136,7 +136,7 @@ class MinervaBot():
                 shutil.rmtree(temp_path+name)
                 count+=1
             
-        self.logger.debug("Deleted %s temp files."%count)
+        self.logger.info("Deleted %s temp files."%count)
         
 
 
