@@ -140,7 +140,7 @@ class MinervaBot():
                 except:
                     pass
             
-        self.logger.info("Deleted %s temp files."%count)
+        self.logger.info("Deleted %s temp file(s)."%count)
         
 
 
