@@ -68,6 +68,14 @@ def parse_watchline(line):
     item["depcode"]=item["dep"]+item["code"]
     return item
 
+def create_demo_watchlist():    
+    example="""fall 2013,comp 250
+winter 2014,edpe 335"""
+    with open("watchlist","w") as f:
+        f.write(example)
+    
+    print("Created demo watchlist file. Open the file \"watchlist\" in the zminerva directory to see a working example.")
+
 def main(args):
     try:
         interval=int(args["--interval"])
@@ -82,6 +90,7 @@ def main(args):
     watchlist=get_watchlist()
     if not watchlist:
         print("Abort: Failed to find watchlist.")
+        create_demo_watchlist()
         return
     
     try:

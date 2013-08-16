@@ -124,7 +124,7 @@ class MinervaBot():
     def clear_temp_files(self):
         """
         selenium seems to have a bug where if the the python process
-        never ends, new selenium webdrivers being started will 
+        never ends, new selenium webdrivers being started and closed will 
         eventually flood the /tmp/ folder with browser profiles.
         This deletes them.
         """
