@@ -69,8 +69,14 @@ def parse_watchline(line):
     return item
 
 def create_demo_watchlist():    
-    example="""fall 2013,comp 250
-winter 2014,edpe 335"""
+    example="""#Demo watchlist file. Add as many classes as you want to monitor.
+#If a course status keeps showing up as unknown, maybe the semester, 
+#department, code, or crn are wrong. Lines starting with "#" are ignored.
+#You can change this file while zminerva is running.
+fall 2013,comp 201
+
+#You can also be more specific by adding a CRN like so:
+winter 2014,edpe 301,crn 1337"""
     with open("watchlist","w") as f:
         f.write(example)
     
@@ -83,7 +89,7 @@ def main(args):
         print("Abort: Invalid interval: %s"%args["--interval"])
         return
     
-    if "@gmail.com" not in args["<gmail-user>"]:
+    if args["<gmail-user>"] and "@gmail.com" not in args["<gmail-user>"]:
         print("Abort: Invalid email: %s. The sender of the emails must be a gmail account."%args["<gmail-user>"])
         return
     
