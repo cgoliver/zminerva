@@ -120,8 +120,7 @@ class MinervaLoop(LoopMessenger):
         
             self.process_course_history()
         finally:
-            mb.close()
-                    
+            mb.close()               
     
     def lookup(self,watchitem,course_manager):
         crn=watchitem["crn"]
@@ -174,7 +173,8 @@ class MinervaLoop(LoopMessenger):
         for s in statuses:
             depcodes=[item["depcode"].upper() for item in statuses[s]]
             summary+="\"%s\": %s. "%(STATUSES[s],", ".join(depcodes))
-        self.logger.info(summary)
+        if summary:
+            self.logger.info(summary)
     
     def process_course_history(self):
         path="course_history"

@@ -41,17 +41,27 @@ class MinervaBot():
         element.send_keys(self.password)
         element.send_keys(Keys.RETURN)
         
-        self.logger.debug("Logged into Minerva.")
+        self.logger.debug("Submitting login to Minerva.")
+    
+    def is_login_failed(self):
+        """
+        use this once driver.get(url) is used on a page that will be a login page if you're not logged in.
+        """
+        text="Please select one of the following login methods:"
+        return text in self.driver.page_source
     
     def set_semester(self,semester):
         "Search class schedule"
         if self.semester==semester:
-            return
+            return 1
         else:
             self.semester=semester
             
         url="https://horizon.mcgill.ca/pban1/bwskfcls.p_sel_crse_search"
         self.driver.get(url)
+        if self.is_login_failed():
+            self.logger.error("Minerva login credentials failed.")
+            return 0
         
         "Combo box for semester"
         found_semester=0
