@@ -5,7 +5,7 @@ Usage:
   zminerva.py <mcgill-user> <mcgill-pw> [<recipient> <gmail-user> <gmail-pw>] [options]
 
 Options:
-  --interval=<seconds>   Wait this number of seconds after finishing a search before starting another. [default: 1800]
+  --interval=<minutes>   Wait this number of minutes after finishing a search before starting another. [default: 30]
   --verbose              Extra output will print to console and save to the logs.
   --headless             Necessary on commandline servers. Runs firefox headless, meaning invisibly.
   --graduate             By default, zminerva only searches undergrad courses. Use this option to also search all levels.
@@ -69,7 +69,7 @@ def parse_watchline(line):
     return item
 
 def create_demo_watchlist():    
-    example="""#Demo watchlist file. Add as many classes as you want to monitor.
+    example="""#Demo watchlist file. List as many classes as you want to monitor.
 #If a course status keeps showing up as unknown, maybe the semester, 
 #department, code, or crn are wrong. Lines starting with "#" are ignored.
 #You can change this file while zminerva is running.
@@ -85,6 +85,7 @@ winter 2014,edpe 301,crn 1337"""
 def main(args):
     try:
         interval=int(args["--interval"])
+        interval=5 if interval<5 else interval
     except:
         print("Abort: Invalid interval: %s"%args["--interval"])
         return

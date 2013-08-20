@@ -11,7 +11,7 @@ from zconstants import *
 class MinervaLoop(LoopMessenger):
     def __init__(self,mcgill_user,mcgill_pw,
                  watchlist,
-                 interval=300,
+                 interval=5,
                  headless=0,
                  verbose=0,
                  gmail_user="",gmail_pw="",gmail_recipient="",
@@ -38,7 +38,7 @@ class MinervaLoop(LoopMessenger):
         self.last_course_history=[]
         
         self.set_semester_dic()
-        self.loop(interval)
+        self.loop()
     
     def set_semester_dic(self):
         """
@@ -61,7 +61,7 @@ class MinervaLoop(LoopMessenger):
             departments=[i["dep"] for i in watchdic[semester]]
             self.semester_dic[semester]=set(departments)
         
-    def loop(self,interval):
+    def loop(self):
         first=1
         failcount=0
         while 1==1:
@@ -78,9 +78,9 @@ class MinervaLoop(LoopMessenger):
                     failcount=30
             
             self.report()
-            real_interval=int(interval*(1+failcount/2))
-            self.logger.info("Waiting %s seconds."%real_interval)
-            time.sleep(interval)
+            real_interval=int(self.interval*(1+failcount/2))
+            self.logger.info("Waiting %s minutes."%real_interval)
+            time.sleep(self.interval*60)
     
     def log_first_loop(self):
         args_without_pws=copy.copy(self.args)
