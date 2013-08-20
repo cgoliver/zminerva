@@ -21,7 +21,7 @@ Unless you have a server of your own, I suggest you use a free Amazon EC2 server
 ###Linux
 Install dependencies: 
 
-	sudo apt-get install python3.3 firefox python3-lxml python3-pip xvfb uchardet 
+	sudo apt-get install git python3.3 firefox python3-lxml python3-pip xvfb uchardet 
 
 Use pip to install python libraries:
 
@@ -31,6 +31,11 @@ Navigate to "dist-packages" and install ztools:
 
 	cd /usr/lib/python3/dist-packages/
 	sudo git clone https://github.com/Zulban/ztools
+
+Finally, navigate to where you want the scripts, and get the zminerva project from github:
+	
+	cd ~/
+	git clone https://github.com/Zulban/zminerva
 
 ###Windows and OSX
 Currently no Windows or OSX support. Only tested on Linux. It would be really easy to port without xvfb (which allows the --headless option). It's just a matter of using python3-chardet instead of uchardet in ztools/webpage.py. This is really designed to be run headless on a Linux server, anyways.
