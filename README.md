@@ -1,21 +1,23 @@
 zminerva
 ========
-Written by zulban. Email zulban@gmail.com for comments. Code quality suggestions are very welcome.
-
 Tired of checking if closed, inactive, or full classes have opened up? This project monitors McGill university's Minerva website and emails you when classes you want have opened up. You just need to provide your Minerva login, an email account, and which courses you want.
+
+Written by zulban. Email zulban@gmail.com for comments. Code quality suggestions are very welcome.
 
 ###Security
 If you're worried about providing your login credentials to a mysterious program (you damn well should be), have a look at the source code first. It's all free and open software.
 
 ###Disclaimer
-By default, the check interval is set to 30 minutes. That's recommended. I request that you do not spam McGill by setting this any lower. Plus, you will be blocked if you query too often. Follow [Responsible Use of McGill Information Technology Resources](http://www.mcgill.ca/secretariat/sites/mcgill.ca.secretariat/files/Responsible-Use-of-McGill-IT-Policy-on-the.pdf).
+By default, the check interval is set to 30 minutes. That's recommended. I request that you do not spam McGill by setting this any lower. Plus, you will be blocked if you query too often. Follow the rules in the [Responsible Use of McGill Information Technology Resources](http://www.mcgill.ca/secretariat/sites/mcgill.ca.secretariat/files/Responsible-Use-of-McGill-IT-Policy-on-the.pdf).
 
 This program does not actually register you for classes. That's on you. Automatic class registering and dropping would be really easy to set up, but I figured it's probably best not to mess with that.
 
 ##Notes
-Tested with [selenium 2.34.0](https://pypi.python.org/packages/source/s/selenium/selenium-2.34.0.tar.gz)
+Tested with [selenium 2.34.0](https://pypi.python.org/packages/source/s/selenium/selenium-2.34.0.tar.gz).
 
 ##Installation
+Unless you have a server of your own, I suggest you use a free Amazon EC2 server that runs Ubuntu. They're very easy to set up if you have any command line experience, and it will run 24/7.
+
 ###Linux
 Install dependencies: 
 
@@ -31,16 +33,16 @@ Navigate to "dist-packages" and install ztools:
 	sudo git clone https://github.com/Zulban/ztools
 
 ###Windows and OSX
-Currently no Windows or OSX support. Only tested on Linux. It would be really easy to port without xvfb (which allows the --headless option). It's just a matter of using python3-chardet instead of uchardet in ztools/webpage.py.
+Currently no Windows or OSX support. Only tested on Linux. It would be really easy to port without xvfb (which allows the --headless option). It's just a matter of using python3-chardet instead of uchardet in ztools/webpage.py. This is really designed to be run headless on a Linux server, anyways.
 
 ##Usage
 ###Watch List
-The list of courses you want to monitor must be saved in the file "watchlist". You must provide a department, code, and semester. CRNs are optional. Example:
+The list of courses you want to monitor must be saved in a file named "watchlist". If you run zminerva.py without a watchlist, it will generate a demo watchlist for you. Example:
 
 	fall 2013, comp 250, crn 827
 	fall 2013, edpe 335
 	
-This will monitor the status of only one comp 250 (with that CRN). It also monitors all EDPE 335 and reports only the best status.  
+This will monitor the status of only one comp 250 (with that CRN). It also monitors all EDPE 335 and reports only the best status. Use commas and spaces as shown above.  
 
 ###Basic
 At a minimum, you must provide your @mail.mcgill.ca username and password:
@@ -54,14 +56,14 @@ In order to receive emails when course statuses change, you must also provide a 
 
 Here zminerva logs in to Minerva using bob.joe@mail.mcgill.ca. When statuses change, emails are sent to bob.joe@hotmail.com. The emails are sent from robot@gmail.com.
 
-###Help
-For more options:
-
-	python3 zminerva.py -h  
-
 ##Statuses
 1. Unknown
 2. Not active
 3. Waitlist is full
 4. Waitlist is open
 5. Open
+
+##Help
+For more options:
+
+	python3 zminerva.py -h  
