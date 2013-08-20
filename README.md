@@ -61,6 +61,12 @@ In order to receive emails when course statuses change, you must also provide a 
 
 Here zminerva logs in to Minerva using bob.joe@mail.mcgill.ca. When statuses change, emails are sent to bob.joe@hotmail.com. The emails are sent from robot@gmail.com.
 
+Finally, if you're using a server, you may want to run zminerva even while logged out. I use the program "screen".
+
+	screen python3 zminerva.py ...
+
+I then "detach" from screen.
+
 ##Statuses
 1. Unknown
 2. Not active
