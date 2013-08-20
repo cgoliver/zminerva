@@ -2,7 +2,8 @@
 Minerva Crawl
 
 Usage:
-  zminerva.py <mcgill-user> <mcgill-pw> [<recipient> <gmail-user> <gmail-pw>] [options]
+  zminerva.py <mcgill-user> <mcgill-pw> [options]
+  zminerva.py <mcgill-user> <mcgill-pw> <recipient> <gmail-user> <gmail-pw> [options]
 
 Options:
   --interval=<minutes>   Wait this number of minutes after finishing a search before starting another. [default: 30]

@@ -146,7 +146,11 @@ class MinervaLoop(LoopMessenger):
             self.logger.setLevel(logging.DEBUG)
         else:
             self.logger.setLevel(logging.INFO)
-    
+        
+        try:
+            os.mkdir("logs")
+        except:
+            pass
         fh = logging.FileHandler("logs/"+get_log_name())    
         ch = logging.StreamHandler()
         
