@@ -20,7 +20,7 @@ Tested with [selenium 2.34.0](https://pypi.python.org/packages/source/s/selenium
 ##Installation
 Unless you have a server of your own, I suggest you use a free Amazon EC2 server that runs Ubuntu. They're very easy to set up if you have any command line experience, and it will run 24/7.
 
-###Linux
+###Linux (Ubuntu)
 Install dependencies: 
 
 	sudo apt-get install git python3.3 firefox python3-lxml python3-pip xvfb uchardet 
