@@ -28,7 +28,7 @@ class LoopMessenger():
         subject="zminerva report"
         body="Hello.\n\nHere's the regular status report you requested every %s day(s):\n\n"%self.report_days
         body+="\n".join(messages)
-        body+="\n\nzminerva will continue to check class statuses every %s seconds."%self.interval
+        body+="\n\nzminerva will continue to check class statuses every %s minutes."%self.interval
         
         
         self.send_email(subject,body)
