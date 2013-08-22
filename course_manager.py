@@ -75,7 +75,8 @@ class CourseManager(CourseView):
     
     def set_webpage(self,webpage):
         self.webpage=webpage
-        xpath="/html/body/div[3]/form/table/tbody/tr"
+        xpath="/html/body/div[3]/form/table/tr"
+        
         for row in webpage.get_from_xpath(xpath):
             self.add_row_element(row)
     

@@ -1,7 +1,6 @@
 import time, os.path, logging, sys, datetime, copy
 
-from http.client import BadStatusLine
-from selenium.common.exceptions import WebDriverException
+import requests
 
 from minerva_bot import MinervaBot
 from loop_messenger import LoopMessenger
@@ -12,21 +11,17 @@ class MinervaLoop(LoopMessenger):
     def __init__(self,mcgill_user,mcgill_pw,
                  watchlist,
                  interval=5,
-                 headless=0,
                  verbose=0,
                  gmail_user="",gmail_pw="",gmail_recipient="",
-                 graduate=0,
                  report_days=0,
                  args={}):
         self.mcgill_user=mcgill_user
         self.mcgill_pw=mcgill_pw
-        self.headless=headless
         self.gmail_user=gmail_user
         self.gmail_pw=gmail_pw
         self.gmail_recipient=gmail_recipient
         self.interval=interval
         self.watchlist=watchlist
-        self.graduate=graduate
         self.report_days=report_days
         self.verbose=verbose
         self.args=args
@@ -94,33 +89,27 @@ class MinervaLoop(LoopMessenger):
         try:
             self.run()
             return 1
-        except (BadStatusLine, IOError) as e:
-            self.logger.error("Connection failed.",exc_info=1)
-        except WebDriverException as e:
-            self.logger.critical("Webdriver failed: "+str(e))
+        except requests.exceptions.ConnectionError as e:
+            self.logger.critical("Connection failed.")
         except:
-            self.logger.error("Unknown failure.",exc_info=1)
+            self.logger.critical("Unknown failure.",exc_info=1)
         return 0
     
     def run(self):
-        mb=MinervaBot(self.mcgill_user,self.mcgill_pw,
-                      headless=self.headless,graduate=self.graduate)
+        mb=MinervaBot(self.mcgill_user,self.mcgill_pw)
         
-        try:
-            for semester in self.semester_dic:
-                departments=self.semester_dic[semester]
-                cm=mb.get_course_manager(semester,departments)
-                if not cm:
-                    self.logger.error("Failed to get course manager for %s %s"%(semester,", ".join(departments)))
-                    continue
+        for semester in self.semester_dic:
+            departments=self.semester_dic[semester]
+            cm=mb.get_course_manager(semester,departments)
+            if not cm:
+                self.logger.error("Failed to get course manager for %s %s"%(semester,", ".join(departments)))
+                continue
                 
-                for watchitem in self.watchlist:
-                    if watchitem["semester"]==semester:
-                        self.lookup(watchitem,cm)
+            for watchitem in self.watchlist:
+                if watchitem["semester"]==semester:
+                    self.lookup(watchitem,cm)
         
-            self.process_course_history()
-        finally:
-            mb.close()               
+        self.process_course_history()               
     
     def lookup(self,watchitem,course_manager):
         crn=watchitem["crn"]

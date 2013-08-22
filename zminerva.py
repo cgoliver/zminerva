@@ -1,5 +1,7 @@
 """
-Minerva Crawl
+Minerva Crawler
+
+Regularly logs into McGill's Minerva website to check if courses you want are open. If their statuses change, it sends you an email.
 
 Usage:
   zminerva.py <mcgill-user> <mcgill-pw> [options]
@@ -8,8 +10,6 @@ Usage:
 Options:
   --interval=<minutes>   Wait this number of minutes after finishing a search before starting another. [default: 30]
   --verbose              Extra output will print to console and save to the logs.
-  --headless             Necessary on commandline servers. Runs firefox headless, meaning invisibly.
-  --graduate             By default, zminerva only searches undergrad courses. Use this option to also search all levels.
   --report=<days>        zminerva will send an email update even if there are no course status changes. Set the number of days between each report. [default: 0]
   
   -h --help           Show this screen.
@@ -111,12 +111,10 @@ def main(args):
                 args["<mcgill-pw>"],
                 watchlist,
                 interval=interval,
-                headless=args["--headless"],
                 gmail_user=args["<gmail-user>"],
                 gmail_pw=args["<gmail-pw>"],
                 gmail_recipient=args["<recipient>"],
                 verbose=args["--verbose"],
-                graduate=args["--graduate"],
                 report_days=report_days,
                 args=args)
 
