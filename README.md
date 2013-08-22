@@ -20,7 +20,7 @@ On Linux, your credentials will be saved in the bash history. Take precautions.
 ###Linux (Ubuntu)
 Install dependencies: 
 
-	sudo apt-get install git python3.3 python3-lxml uchardet 
+	sudo apt-get install git python3.3 python3-lxml python3-requests uchardet 
 
 Navigate to "dist-packages" and install ztools:
 
