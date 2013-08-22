@@ -16,16 +16,11 @@ This program does not actually register you for classes. That's on you. Automati
 On Linux, your credentials will be saved in the bash history. Take precautions.
 
 ##Installation
-Unless you have a server of your own, I suggest you use a free Amazon EC2 server that runs Ubuntu. They're very easy to set up if you have any command line experience, and it will run 24/7.
 
 ###Linux (Ubuntu)
 Install dependencies: 
 
-	sudo apt-get install git python3.3 firefox python3-lxml python3-pip xvfb uchardet 
-
-Use pip to install python libraries:
-
-	sudo pip3 install pyvirtualdisplay selenium
+	sudo apt-get install git python3.3 python3-lxml uchardet 
 
 Navigate to "dist-packages" and install ztools:
 
@@ -38,7 +33,7 @@ Finally, navigate to where you want the scripts, and get the zminerva project fr
 	git clone https://github.com/Zulban/zminerva
 
 ###Windows and OSX
-Currently no Windows or OSX support. Only tested on Linux. It would be really easy to port without xvfb (which allows the --headless option). It's just a matter of using python3-chardet instead of uchardet in ztools/webpage.py. This is really designed to be run headless on a Linux server, anyways.
+Only tested on Ubuntu 13. But Windows and OSX support should be coming soon. I just need to replace ztools.webpage so I can remove uchardet. 
 
 ##Usage
 ###Watch List
@@ -60,12 +55,6 @@ In order to receive emails when course statuses change, you must also provide a 
 	python3 zminerva.py bob.joe@mail.mcgill.ca mcgillpassword bob.joe@hotmail.com robot@gmail.com robotpassword
 
 Here zminerva logs in to Minerva using bob.joe@mail.mcgill.ca. When statuses change, emails are sent to bob.joe@hotmail.com. The emails are sent from robot@gmail.com.
-
-Finally, if you're using a server, you may want to run zminerva even while logged out. I use the program "screen".
-
-	screen python3 zminerva.py ...
-
-I then "detach" from screen.
 
 ##Statuses
 1. Unknown
