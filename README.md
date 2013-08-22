@@ -33,7 +33,12 @@ Finally, navigate to where you want the scripts, and get the zminerva project fr
 	git clone https://github.com/Zulban/zminerva
 
 ###Windows and OSX
-Only tested on Ubuntu 13. But Windows and OSX support should be coming soon. I just need to replace ztools.webpage so I can remove uchardet. 
+Only tested on Ubuntu 13. But you should be able to run on Windows and OSX. Just install these packages:
+
+	lxml for python 3
+	requests for python 3 
+
+And git clone ztools and zminerva like in the Linux steps.
 
 ##Usage
 ###Watch List
