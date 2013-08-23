@@ -54,7 +54,7 @@ Install charade. First, [download it here](https://pypi.python.org/packages/sour
 
 Navigate to where you want the scripts, and get the zminerva project from github:
 	
-	C:
+	cd c:/
 	git clone https://github.com/Zulban/zminerva
 
 Finally, clone ztools into the zminerva folder:
