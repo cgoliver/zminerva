@@ -1,6 +1,5 @@
 
-import logging, urllib.parse
-import subprocess
+import logging, urllib.parse, webbrowser
 import requests
 
 from ztools.webpage import WebPage
@@ -89,7 +88,7 @@ class MinervaBot():
         htmlpath="temp.html"
         with open(htmlpath,"w") as f:
             f.write(htmldata)
-        webpage=WebPage(htmlpath,delete_html=1,verbose=1)
+        webpage=WebPage(htmlpath=htmlpath)
         cm=CourseManager(webpage)
         return cm
     
@@ -116,11 +115,12 @@ class MinervaBot():
     def show_html(self,htmldata):
         htmldata=mb.get_course_page("fall 2013",departments)
         print(htmldata)
-        with open("test.html","w") as f:
+        filename="delete_me.html"
+        with open(filename,"w") as f:
             f.write(htmldata)
             
-        cmd = "chromium-browser test.html"
-        status, output = subprocess.getstatusoutput(cmd)
+        webbrowser.open(filename)
+        os.remove(filename)
 
 
 

@@ -1,4 +1,4 @@
-import time, os.path, logging, sys, datetime, copy
+import time, os.path, logging, datetime, copy
 
 import requests
 
@@ -59,7 +59,7 @@ class MinervaLoop(LoopMessenger):
     def loop(self):
         first=1
         failcount=0
-        while 1==1:
+        while True:
             self.set_logger()
             if first:
                 self.log_first_loop()
@@ -90,7 +90,7 @@ class MinervaLoop(LoopMessenger):
             self.run()
             return 1
         except requests.exceptions.ConnectionError as e:
-            self.logger.critical("Connection failed.")
+            self.logger.critical("Connection failed.",exc_info=self.verbose)
         except:
             self.logger.critical("Unknown failure.",exc_info=1)
         return 0
