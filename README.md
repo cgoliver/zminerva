@@ -27,8 +27,8 @@ Install charade. First, [download it here](https://pypi.python.org/packages/sour
 	
 	python3 setup.py install
 
-Open git bash/terminal/console. Navigate to where you want the scripts, and get the zminerva project from github:
-	
+Navigate to where you want the scripts, and get the zminerva project from github:
+
 	cd ~/
 	git clone https://github.com/Zulban/zminerva
 
@@ -52,7 +52,7 @@ Install charade. First, [download it here](https://pypi.python.org/packages/sour
 	
 	python setup.py install
 
-Navigate to where you want the scripts, and get the zminerva project from github:
+Open git bash/terminal/console. Navigate to where you want the scripts, and get the zminerva project from github:
 	
 	cd c:/
 	git clone https://github.com/Zulban/zminerva
