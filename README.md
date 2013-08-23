@@ -38,15 +38,15 @@ Finally, clone ztools into the zminerva folder:
 	git clone https://github.com/Zulban/ztools
 
 ###Windows
-Install steps are a little tedious at the moment, but it's tested. Hopefully you know what a command prompt is.
+Install steps are a little tedious at the moment, but it's tested. Hopefully you know what a command prompt is. And whether your computer is 32 bit or 64 bit so you know which installers to pick.
 
 [Install Git](http://git-scm.com/downloads).
 
 [Install Python 3.3](http://www.python.org/download/releases/3.3.2/).
 
-[Install lxml](http://www.lfd.uci.edu/~gohlke/pythonlibs/#lxml).
+[Install lxml for Python 3.3](http://www.lfd.uci.edu/~gohlke/pythonlibs/#lxml).
 
-[Install requests](http://www.lfd.uci.edu/~gohlke/pythonlibs/#requests).
+[Install requests for Python 3.3](http://www.lfd.uci.edu/~gohlke/pythonlibs/#requests).
 
 Install charade. First, [download it here](https://pypi.python.org/packages/source/c/charade/charade-1.0.3.tar.gz). Extract the folder. Run command prompt. Navigate to the folder, and type:
 	
