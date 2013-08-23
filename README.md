@@ -16,11 +16,12 @@ This program does not actually register you for classes. That's on you. Automati
 On Linux, your credentials will be saved in the bash history. Take precautions.
 
 ##Installation
+Requires python 3, lxml, requests, chardet, ztools, and git.
 
 ###Linux (Ubuntu)
 Install dependencies: 
 
-	sudo apt-get install git python3.3 python3-lxml python3-requests uchardet 
+	sudo apt-get install python3.3 python3-lxml python3-requests python3-chardet git 
 
 Navigate to "dist-packages" and install ztools:
 
@@ -33,12 +34,7 @@ Finally, navigate to where you want the scripts, and get the zminerva project fr
 	git clone https://github.com/Zulban/zminerva
 
 ###Windows and OSX
-Only tested on Ubuntu 13. But you should be able to run on Windows and OSX. Just install these packages:
-
-	lxml for python 3
-	requests for python 3 
-
-And git clone ztools and zminerva like in the Linux steps.
+Support on the way. Only tested on Ubuntu 13. But you should be able to run on Windows and OSX if you install the correct packages.
 
 ##Usage
 ###Watch List
