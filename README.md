@@ -16,25 +16,50 @@ This program does not actually register you for classes. That's on you. Automati
 On Linux, your credentials will be saved in the bash history. Take precautions.
 
 ##Installation
-Requires python 3, lxml, requests, chardet, ztools, and git.
+Requires python 3, lxml, requests, charade, ztools, and git.
 
 ###Linux (Ubuntu)
 Install dependencies: 
 
-	sudo apt-get install python3.3 python3-lxml python3-requests python3-chardet git 
+	sudo apt-get install python3.3 python3-lxml python3-requests git 
 
-Navigate to "dist-packages" and install ztools:
+Install charade. First, [download it here](https://pypi.python.org/packages/source/c/charade/charade-1.0.3.tar.gz). Extract the folder, navigate to it, and type:
+	
+	python3 setup.py install
 
-	cd /usr/lib/python3/dist-packages/
-	sudo git clone https://github.com/Zulban/ztools
-
-Finally, navigate to where you want the scripts, and get the zminerva project from github:
+Navigate to where you want the scripts, and get the zminerva project from github:
 	
 	cd ~/
 	git clone https://github.com/Zulban/zminerva
 
-###Windows and OSX
-Support on the way. Only tested on Ubuntu 13. But you should be able to run on Windows and OSX if you install the correct packages.
+Finally, clone ztools into the zminerva folder:
+
+	cd zminerva
+	git clone https://github.com/Zulban/ztools
+
+###Windows
+Install steps are a little tedious at the moment, but it's tested. Hopefully you know what a command prompt is.
+
+[Install Git](http://git-scm.com/downloads).
+[Install Python 3.3](http://www.python.org/download/releases/3.3.2/).
+[Install lxml](http://www.lfd.uci.edu/~gohlke/pythonlibs/#lxml).
+[Install requests](http://www.lfd.uci.edu/~gohlke/pythonlibs/#requests).
+Install charade. First, [download it here](https://pypi.python.org/packages/source/c/charade/charade-1.0.3.tar.gz). Extract the folder. Run command prompt. Navigate to the folder, and type:
+	
+	python setup.py install
+
+Navigate to where you want the scripts, and get the zminerva project from github:
+	
+	C:
+	git clone https://github.com/Zulban/zminerva
+
+Finally, clone ztools into the zminerva folder:
+
+	cd zminerva
+	git clone https://github.com/Zulban/ztools
+
+###OSX
+Untested, but it should almost definitely work if you install the correct packages.
 
 ##Usage
 ###Watch List
