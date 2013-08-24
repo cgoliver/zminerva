@@ -25,7 +25,7 @@ Install dependencies:
 
 Install charade. First, [download it here](https://pypi.python.org/packages/source/c/charade/charade-1.0.3.tar.gz). Extract the folder, navigate to it, and type:
 	
-	python3 setup.py install
+	sudo python3 setup.py install
 
 Navigate to where you want the scripts, and get the zminerva project from github:
 
@@ -93,10 +93,9 @@ Here zminerva logs in to Minerva using bob.joe@mail.mcgill.ca. When statuses cha
 4. Waitlist is open
 5. Open
 
-##Notes
-Tested with [selenium 2.34.0](https://pypi.python.org/packages/source/s/selenium/selenium-2.34.0.tar.gz).
-
 ##Help
 For more options:
 
-	python3 zminerva.py -h  
+	python3 zminerva.py -h
+	
+I'm also more than happy to help with setup so long as you've already genuinely tried. Just send me an email.   
