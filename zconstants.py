@@ -15,4 +15,4 @@ STATUSES={NOTACTIVE:"Not active",
           OVERBOOKED:"Overbooked",
           
           NOTFOUND:"Course not found",
-          UNKNOWN:"Unknown"}
+          UNKNOWN:"Course found, unknown status"}
