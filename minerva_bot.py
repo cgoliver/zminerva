@@ -89,7 +89,7 @@ class MinervaBot():
         with open(htmlpath,"w") as f:
             f.write(htmldata)
         webpage=WebPage(htmlpath=htmlpath)
-        cm=CourseManager(webpage)
+        cm=CourseManager(webpage,logger=self.logger)
         return cm
     
     def get_term_in(self,semester):

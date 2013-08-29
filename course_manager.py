@@ -2,18 +2,19 @@
 from zconstants import *
 
 class CourseView():
-    def show_row_data(self,row_data):
+    def get_row_text(self,row_data):
         r=row_data
-        print("\n%s %s - %s"%(r["dep"],r["code"],r["title"]))
+        text="\n%s %s - %s"%(r["dep"],r["code"],r["title"])
         for key in self.get_funcs:
             if key not in ("dep","code","title"):
-                print("%s: %s"%(key,r[key]))
+                text+="\n"+"%s: %s"%(key,r[key])
+        return text
     
     def get_register_status_by_crn(self,crn):
         if crn not in self.crns:
-            if self.verbose:
-                print("Could not find crn: %s"%crn)
-            return UNKNOWN
+            if self.logger:
+                self.logger.debug("Could not find crn: %s"%crn)
+            return NOTFOUND
         
         r=self.crns[crn]
         if r["status"]!="Active":
@@ -25,6 +26,9 @@ class CourseView():
         if r["wait act"]<r["wait cap"] and r["wait act"]>0:
             return WAITLISTOPEN
         
+        if r["act"] and r["act"]>r["cap"]:
+            return OVERBOOKED
+        
         if r["rem"]>0:
             return OPEN
         
@@ -34,7 +38,7 @@ class CourseView():
         depcode=depcode.replace(" ","").upper()
         
         if depcode not in self.depcodes:
-            return 0,UNKNOWN
+            return 0,NOTFOUND
         
         r_statuses={}
         for row_data in self.depcodes[depcode]:
@@ -50,8 +54,8 @@ class CourseView():
 
 
 class CourseManager(CourseView):    
-    def __init__(self,webpage,verbose=0):
-        self.verbose=verbose
+    def __init__(self,webpage,logger=0):
+        self.logger=logger
         self.row_datas=[]
         self.depcodes={}
         self.crns={}
@@ -141,8 +145,8 @@ class CourseManager(CourseView):
             self.add_row_data(row_data)
     
     def add_row_data(self,row_data):
-        if self.verbose>1:
-            self.show_row_data(row_data)
+        if self.logger:
+            self.logger.debug(self.get_row_text(row_data))
             
         self.row_datas+=[row_data]
         
