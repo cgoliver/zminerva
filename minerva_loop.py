@@ -5,7 +5,7 @@ import requests
 from minerva_bot import MinervaBot
 from loop_messenger import LoopMessenger
 from ztools.zio import zread_json, zwrite_json
-from zconstants import *
+from zconstants import STATUSES
 
 class MinervaLoop(LoopMessenger):
     def __init__(self,mcgill_user,mcgill_pw,

@@ -1,12 +1,18 @@
 
-UNKNOWN=0
 NOTACTIVE=1
 WAITLISTFULL=2
 WAITLISTOPEN=3
 OPEN=4
+OVERBOOKED=5
 
-STATUSES={UNKNOWN:"Unknown",
-          NOTACTIVE:"Not active",
+NOTFOUND=10
+UNKNOWN=11
+
+STATUSES={NOTACTIVE:"Not active",
           WAITLISTFULL:"Waitlist is full",
           WAITLISTOPEN:"Waitlist is open",
-          OPEN:"Open"}
+          OPEN:"Open",
+          OVERBOOKED:"Overbooked",
+          
+          NOTFOUND:"Course not found",
+          UNKNOWN:"Unknown"}
