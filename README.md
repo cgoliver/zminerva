@@ -87,11 +87,13 @@ In order to receive emails when course statuses change, you must also provide a 
 Here zminerva logs in to Minerva using bob.joe@mail.mcgill.ca. When statuses change, emails are sent to bob.joe@hotmail.com. The emails are sent from robot@gmail.com.
 
 ##Statuses
-1. Unknown
-2. Not active
-3. Waitlist is full
-4. Waitlist is open
-5. Open
+1. Not active
+2. Waitlist is full
+3. Waitlist is open
+4. Open
+5. Overbooked
+6. Unknown
+7. Not found
 
 ##Help
 For more options:
