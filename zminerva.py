@@ -119,7 +119,7 @@ def main(args):
                 args=args)
 
 if __name__ == "__main__":
-    args = docopt(__doc__, version="0.1")
+    args = docopt(__doc__, version="1.0")
     main(args)
 
 
