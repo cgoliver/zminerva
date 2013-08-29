@@ -32,6 +32,9 @@ class CourseView():
         if r["rem"]>0:
             return OPEN
         
+        if r["rem"]==0 and r["act"]:
+            return NOWAITLIST
+        
         return UNKNOWN
     
     def get_register_status_by_depcode(self,depcode):
