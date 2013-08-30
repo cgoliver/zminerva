@@ -51,7 +51,7 @@ class CourseView():
             
         best_rstatus=list(r_statuses.keys())
         best_rstatus.sort()
-        best_status=best_rstatus[-1]
+        best_status=best_rstatus[0]
         best_crn=r_statuses[best_status]
         return best_crn,best_status
 
