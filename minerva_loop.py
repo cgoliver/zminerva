@@ -96,7 +96,8 @@ class MinervaLoop(LoopMessenger):
         return 0
     
     def run(self):
-        mb=MinervaBot(self.mcgill_user,self.mcgill_pw)
+        mb=MinervaBot(self.mcgill_user,self.mcgill_pw,
+                      logger=self.logger)
         
         for semester in self.semester_dic:
             departments=self.semester_dic[semester]

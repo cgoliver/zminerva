@@ -6,10 +6,10 @@ from ztools.webpage import WebPage
 from course_manager import CourseManager       
 
 class MinervaBot():
-    def __init__(self,username,password):
+    def __init__(self,username,password,logger=0):
         self.username=username
         self.password=password
-        self.logger=logging.getLogger("mcrawl")
+        self.logger=logger
         self.sessionid=""
         
     def get_sessionid(self):
@@ -23,10 +23,12 @@ class MinervaBot():
         data=urllib.parse.urlencode(params)
         cookies={"TESTID":"set"}
         
-        self.logger.debug("Attempting to login to Minerva.")
+        if self.logger:
+            self.logger.debug("Attempting to login to Minerva.")
         r=requests.post(url,data=data,cookies=cookies)
         self.sessionid=r.cookies.get("SESSID")
-        self.logger.info("Logged in to Minerva.")
+        if self.logger:
+            self.logger.info("Logged in to Minerva.")
         
         return self.sessionid
     
@@ -38,9 +40,9 @@ class MinervaBot():
         cookies={"SESSID":self.get_sessionid()}
         
         dep_text=", ".join(departments).upper()
-        self.logger.info("Submitting search for %s classes in departments: %s"%(semester,dep_text))
-        
-        self.logger.debug("cookies: "+str(cookies))
+        if self.logger:
+            self.logger.info("Submitting search for %s classes in departments: %s"%(semester,dep_text))
+            self.logger.debug("cookies: "+str(cookies))
         r=requests.post(url,data=data,cookies=cookies)
         
         return r.text
@@ -109,7 +111,8 @@ class MinervaBot():
         try:
             return year+month
         except:
-            self.logger.error("Unable to parse semester: %s"%semester)
+            if self.logger:
+                self.logger.error("Unable to parse semester: %s"%semester)
             return ""
     
     def show_html(self,htmldata):
