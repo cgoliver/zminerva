@@ -1,4 +1,6 @@
 
+SEASONS=("winter","fall","summer")
+
 """
 where the lowest number is most desirable
 """
