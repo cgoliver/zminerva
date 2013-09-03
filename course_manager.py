@@ -37,6 +37,17 @@ class CourseView():
         
         return UNKNOWN
     
+    def get_title_from_depcode(self,depcode):
+        depcode=depcode.replace(" ","").upper()
+        
+        try:
+            rows=self.depcodes[depcode]
+            return rows[0]["title"]
+        except:
+            pass
+        
+        return ""
+    
     def get_register_status_by_depcode(self,depcode):
         depcode=depcode.replace(" ","").upper()
         
