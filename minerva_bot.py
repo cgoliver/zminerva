@@ -1,5 +1,5 @@
 
-import logging, urllib.parse, webbrowser
+import urllib.parse, webbrowser
 import requests
 
 from ztools.webpage import WebPage
