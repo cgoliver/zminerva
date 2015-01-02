@@ -1,6 +1,7 @@
 course_history
 watchlist
 *.log
+courses.csv
 
 *.py[cod]
 
