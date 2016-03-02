@@ -4,8 +4,8 @@ Minerva Crawler
 Regularly logs into McGill's Minerva website to check if courses you want are open. If their statuses change, it sends you an email.
 
 Usage:
-  zminerva.py <mcgill-user> <mcgill-pw> [options]
-  zminerva.py <mcgill-user> <mcgill-pw> <recipient> <gmail-user> <gmail-pw> [options]
+  zminerva.py <mcgill-user> [options]
+  zminerva.py <mcgill-user> <recipient> <gmail-user> [options]
 
 Options:
   --interval=<minutes>   Wait this number of minutes after finishing a search before starting another. [default: 30]
@@ -16,7 +16,7 @@ Options:
   -v --version        Show version.
 """
 
-import os.path, re
+import os.path, re, getpass
 from ztools.docopt import docopt
 from minerva_loop import MinervaLoop
 
@@ -106,13 +106,18 @@ def main(args):
     except:
         print("Abort: Invalid value for report days: %s"%args["--report"])
         return
+
+    mcgill_pw=getpass.getpass("Enter the password for '%s':"%args["<mcgill-user>"])
+    gmail_pw=""
+    if args["<gmail-user>"]:
+        gmail_pw=getpass.getpass("Enter the password for '%s':"%args["<gmail-user>"])
     
     ml=MinervaLoop(args["<mcgill-user>"],
-                args["<mcgill-pw>"],
+                mcgill_pw,
                 watchlist,
                 interval=interval,
                 gmail_user=args["<gmail-user>"],
-                gmail_pw=args["<gmail-pw>"],
+                gmail_pw=gmail_pw,
                 gmail_recipient=args["<recipient>"],
                 verbose=args["--verbose"],
                 report_days=report_days,
