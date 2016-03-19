@@ -14,7 +14,7 @@ By default, the check interval is set to 30 minutes. That's recommended. I reque
 This program does not actually register you for classes. That's on you. Automatic class registering and dropping would be really easy to set up, but I figured it's probably best not to mess with that.
 
 ##Installation
-Requires python 3, lxml, requests, charade, ztools, and git.
+Requires python 3, lxml, requests, charade and git.
 
 ###Linux (Ubuntu)
 Install dependencies: 
@@ -29,11 +29,6 @@ Navigate to where you want the scripts, and get the zminerva project from github
 
 	cd ~/
 	git clone https://github.com/Zulban/zminerva
-
-Finally, clone ztools into the zminerva folder:
-
-	cd zminerva
-	git clone https://github.com/Zulban/ztools
 
 ###Windows
 Install steps are a little tedious at the moment, but it's tested. Hopefully you know what a command prompt is. And whether your computer is 32 bit or 64 bit so you know which installers to pick.
@@ -54,11 +49,6 @@ Open git bash/terminal/console. Navigate to where you want the scripts, and get 
 	
 	cd c:/
 	git clone https://github.com/Zulban/zminerva
-
-Finally, clone ztools into the zminerva folder:
-
-	cd zminerva
-	git clone https://github.com/Zulban/ztools
 
 ###OSX
 Untested, but it should almost definitely work if you install the correct packages.
