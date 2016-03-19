@@ -17,7 +17,7 @@ Options:
 """
 
 import os.path, re, getpass
-from ztools.docopt import docopt
+from docopt import docopt
 from minerva_loop import MinervaLoop
 
 def get_watchlist():

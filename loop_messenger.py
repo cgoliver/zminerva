@@ -1,7 +1,7 @@
 
 import time
 from zconstants import STATUSES
-from ztools.email_notifier import EmailNotifier
+from email_notifier import EmailNotifier
 
 class LoopMessenger():
     def report(self):

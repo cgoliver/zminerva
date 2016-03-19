@@ -19,7 +19,7 @@ Options:
 
 import os.path
 
-from ztools.docopt import docopt
+from docopt import docopt
 from suggestion_manager import SuggestionManager
 from zconstants import *
         

@@ -2,7 +2,7 @@
 import urllib.parse, webbrowser
 import requests
 
-from ztools.webpage import WebPage
+from webpage import WebPage
 from course_manager import CourseManager       
 
 class MinervaBot():
