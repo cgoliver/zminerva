@@ -1,5 +1,8 @@
 zminerva
 ========
+##Update: April 2016
+The McGill Minerva system was updated in April 2016. This bot has served us well... but it is now broken. At the time of writing, I only have one McGill class left, so this repository probably won't be updated.
+
 ##Summary
 Tired of checking if closed, inactive, or full classes have opened up? This project monitors McGill university's Minerva website and emails you when classes you want have opened up. You just need to provide your Minerva login, an email account, and which courses you want.
 
